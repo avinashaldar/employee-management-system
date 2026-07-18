@@ -48,7 +48,7 @@ The system is intentionally kept simple and beginner-friendly, following clean, 
 | Framework | Spring Boot |
 | Security | Spring Security + JWT (jjwt) |
 | Persistence | Spring Data JPA (Hibernate) |
-| Database | MySQL |
+| Database | PostgreSQL |
 | Build Tool | Maven |
 | Testing | JUnit 5, Mockito, H2 (in-memory) |
 | API Testing | Postman |
