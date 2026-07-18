@@ -44,8 +44,8 @@ The system is intentionally kept simple and beginner-friendly, following clean, 
 
 | Layer | Technology |
 |---|---|
-| Language | Java 17 |
-| Framework | Spring Boot 3.3 |
+| Language | Java |
+| Framework | Spring Boot |
 | Security | Spring Security + JWT (jjwt) |
 | Persistence | Spring Data JPA (Hibernate) |
 | Database | MySQL |
