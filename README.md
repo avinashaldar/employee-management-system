@@ -55,62 +55,13 @@ The system is intentionally kept simple and beginner-friendly, following clean, 
 
 ---
 
-## 📁 Project Structure
-
-```
-employee-management/
-├── src/main/java/com/example/employeemanagement/
-│   ├── entity/          # Employee, User — JPA entities mapped to DB tables
-│   ├── repository/      # EmployeeRepository, UserRepository — Spring Data JPA interfaces
-│   ├── dto/              # RegisterRequest, LoginRequest, AuthResponse — request/response objects
-│   ├── security/         # JwtUtil, JwtAuthFilter, SecurityConfig, CustomUserDetailsService
-│   ├── service/          # AuthService, EmployeeService — business logic
-│   ├── controller/       # AuthController, EmployeeController — REST endpoints
-│   ├── exception/        # GlobalExceptionHandler, ResourceNotFoundException
-│   └── EmployeeManagementApplication.java
-├── src/main/resources/
-│   └── application.properties
-├── src/test/java/com/example/employeemanagement/
-│   ├── service/EmployeeServiceTest.java
-│   └── repository/EmployeeRepositoryTest.java
-├── database.sql
-├── pom.xml
-└── README.md
-```
-
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
 - Java 17+
 - Maven 3.6+
-- MySQL 8+
+- PostgreSQL
 - Postman (for API testing)
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/<your-username>/employee-management-system.git
-   cd employee-management-system
-   ```
-
-2. **Configure the database**
-   Update `src/main/resources/application.properties` with your MySQL credentials (see [Configuration](#configuration) below). The database is auto-created on first run.
-
-3. **Build the project**
-   ```bash
-   mvn clean install
-   ```
-
-4. **Run the application**
-   ```bash
-   mvn spring-boot:run
-   ```
-   The application starts on `http://localhost:8080`.
-
----
 
 ## ⚙️ Configuration
 
@@ -120,7 +71,7 @@ Key properties in `application.properties`:
 server.port=8080
 
 spring.datasource.url=jdbc:mysql://localhost:3306/employee_management_db?createDatabaseIfNotExist=true
-spring.datasource.username=root
+spring.datasource.username=postgres
 spring.datasource.password=root
 
 spring.jpa.hibernate.ddl-auto=update
@@ -129,18 +80,11 @@ jwt.secret=your-secret-key
 jwt.expiration=86400000
 ```
 
-> ⚠️ Update `spring.datasource.username` and `spring.datasource.password` to match your local MySQL setup before running.
+> ⚠️ Update `spring.datasource.username` and `spring.datasource.password` to match your local PostgreSQL setup before running.
 
 ---
 
 ## 📡 API Documentation
-
-### Authentication
-
-| Method | Endpoint | Auth Required | Description |
-|---|---|---|---|
-| `POST` | `/auth/register` | ❌ No | Register a new user |
-| `POST` | `/auth/login` | ❌ No | Login and receive a JWT token |
 
 **Register — Request Body**
 ```json
@@ -190,43 +134,8 @@ jwt.expiration=86400000
 }
 ```
 
-**Get All Employees — with pagination and sorting**
-```
-GET /employees?page=0&size=5&sortBy=name&direction=asc
-```
-
-| Param | Description | Default |
-|---|---|---|
-| `page` | Page number (0-indexed) | `0` |
-| `size` | Records per page | `5` |
-| `sortBy` | Field to sort by | `id` |
-| `direction` | `asc` or `desc` | `asc` |
-
 ---
 
-## 🧪 Testing
-
-Run all unit tests:
-```bash
-mvn test
-```
-
-- **`EmployeeServiceTest`** — tests business logic using Mockito (no real database required)
-- **`EmployeeRepositoryTest`** — tests JPA queries using an in-memory H2 database (`@DataJpaTest`)
-
----
-
-## 📬 Postman Collection
-
-A ready-to-import Postman collection covering every endpoint (Register, Login, Create, Get All, Get by ID, Update, Delete) is available at:
-
-```
-postman/Employee-Management.postman_collection.json
-```
-
-Import it into Postman, run **Register → Login → copy the token → set it as the Bearer token** for the remaining requests, and test each endpoint in sequence.
-
----
 
 ## 👤 Author
 
